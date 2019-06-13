@@ -1,0 +1,14 @@
+select distinct E.agent_code, /*E.bank_bik,*/ E.agreement_code, S.object_name, SEND.agreement_code as QUERY_Agreement_code, SEND.SNDL_ACTUAL
+    from entity E join sent_restrictn_docs S
+        on E.agent_code = S.agent_code
+        join sendlist_dbt_request_type SEND
+        on E.agent_code = SEND.agent_code and E.agreement_code = SEND.agreement_code
+            where E.agreement_code = 'общее_0.5' and E.entt_type = 'Банк' and SEND.SNDL_ACTUAL = 1 and SEND.sndl_Dbt_req_type_id = '-1'
+
+select distinct E.agent_code, /*E.bank_bik,*/ E.agreement_code, S.object_name, SEND.agreement_code as QUERY_Agreement_code, SEND.SNDL_ACTUAL
+    from entity E join sent_restrictn_docs S
+        on E.agent_code = S.agent_code
+        join sendlist_dbt_request_type SEND
+        on E.agent_code = SEND.agent_code
+           where E.agreement_code = 'SMEV3_Restriction' and E.entt_type = 'Банк' and SEND.agreement_code = 'SMEV3_Inquiry' and SEND.SNDL_ACTUAL = 1
+		   and SEND.sndl_Dbt_req_type_id = '-1'

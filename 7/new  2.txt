@@ -1,0 +1,33 @@
+<div>
+						<img src = 'img/star1.png' />
+					</div>
+					
+					<img src='img/production_text.png' />
+					
+					<div>
+						<img src='img/fish.png' />
+						<img src='img/fish_content.png' />
+						<img src='img/spread.png' />
+						<img src='img/spread_content.png' />
+						<img src='img/sea.png' />
+						<img src='img/sea_content.png' />
+					</div>
+					
+				</div>
+				
+				<div id='footer'>
+					<ul>
+						<li>Компания сегодня</li>
+						<li>Новости</li>
+						<li>Каталог</li>
+						<li>Дилерам и партнерам</li>
+						<li>Контакты</li>
+					</ul>
+					
+					<div>
+						<img class='img_centered' src='img/111.png' alt='menu' />
+					</div>
+					
+					<p>
+						© 2007, СП «Санта-Бремор»
+					</p>
