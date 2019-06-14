@@ -1,0 +1,331 @@
+$("document").ready(function(){
+
+
+	var wrap = $(".wrap");
+	var slider = $(".slider");
+	var imgs = slider.find("img");
+	var button1 = $("#b1"),
+		button2 = $("#b2"),
+		button3 = $("#b3");
+	var paused = false;
+	var rM, Rs, timer;
+	var myGallery = {
+	
+		imgIndex: 1,
+		indexMax: imgs.length,
+		
+		
+	
+//First Animation
+	
+		changeNext_1: function() {
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').animate({left:"+=640"}, 0).fadeIn(0);
+			imgs.animate({left:"-=640"}, 500);
+			imgs.not(':nth-child(' + myGallery.imgIndex + ')').fadeOut(0).animate({left:"+=640"}, 0);
+		},
+		
+		changePrev_1: function() {
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').animate({left:"-=640"}, 0).fadeIn(0);
+			imgs.animate({left:"+=640"}, 500);
+			imgs.not(':nth-child(' + myGallery.imgIndex + ')').fadeOut(0).animate({left:"-=640"}, 0);
+		},	
+		
+//Second Animation		
+	
+		changeNext_2: function() {
+			imgs.not(':nth-child(' + myGallery.imgIndex + ')').fadeOut(500);
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').fadeIn(500);
+		},
+		
+		changePrev_2: function() {
+			myGallery.changeNext_2();
+		},
+		
+//Third Animation	
+	
+		/*change_3: function(dx1, dx2) {
+			imgs.css('z-index', 1);
+			if(myGallery.imgIndex > 1) {
+				imgs.filter(':nth-child(' + (myGallery.imgIndex - 1) +')').css('z-index', 2);
+			}
+			
+			else if(myGallery.imgIndex < myGallery.indexMax) {
+				imgs.filter(':nth-child(' + (myGallery.imgIndex + 1) +')').css('z-index', 2);
+			}
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').animate({left:"+=" + dx1 + ""}, 0).fadeIn(0);
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').css('z-index', 3);		
+			imgs.filter(':nth-child(' + myGallery.imgIndex + ')').animate({left:"+=" + dx2 + ""}, 500);
+		
+		
+		},
+
+		changeNext_3: function() {
+			myGallery.change_3(640, -640);
+		},	
+	
+		changePrev_3: function() {
+			myGallery.change_3(-640, 640);
+		},
+		
+		*/
+		
+		changeNext_3: function() 
+		{		
+				
+				imgs.css('z-index', 1);
+				imgs.filter(':nth-child(' + (myGallery.imgIndex - 1) + ')').css('z-index', 2);
+				imgs.filter(':nth-child(' + myGallery.imgIndex + ')').css('z-index', 3);
+				imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').animate({left:"+=640"}, 0).fadeIn(0);	
+				imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').animate({left:"-=640"}, 500);	
+				
+		},
+		
+		changePrev_3: function() 
+		{		
+				
+				imgs.css('z-index', 1);
+				imgs.filter(':nth-child(' + (myGallery.imgIndex + 1) + ')').css('z-index', 2);
+				imgs.filter(':nth-child(' + myGallery.imgIndex + ')').css('z-index', 3);
+				imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').animate({left:"-=640"}, 0).fadeIn(0);	
+				imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').animate({left:"+=640"}, 500);	
+				
+		},
+		
+		
+		
+	
+//NEXT
+	
+		next: function() {
+
+			if(myGallery.imgIndex < myGallery.indexMax) {
+				myGallery.imgIndex++;
+				changeNext();
+				btnNext.disabled = false;
+
+			}
+			
+			if(myGallery.imgIndex == myGallery.indexMax) {
+			
+				btnNext.disabled = true;
+				btnNext.css({opacity:0.5});
+			}
+		
+			if(myGallery.imgIndex > 1) {
+				btnPrev.css({opacity:1});
+			}
+		},
+	
+//PREV	
+		
+		prev: function() {
+			if(myGallery.imgIndex > 1) {
+				myGallery.imgIndex--;
+				changePrev();
+				btnPrev.disabled = false;
+			
+			}
+		
+			if(myGallery.imgIndex == 1) {
+				btnPrev.disabled = true;
+				btnPrev.css({opacity:0.5});
+			}
+		
+			if(myGallery.imgIndex < myGallery.indexMax) {
+				btnNext.css({opacity:1});
+			}	
+		
+		},	
+		
+//Appearance	
+	
+		btn1_appearance: function() {
+			button1.addClass("active");
+			button2.removeClass("active");
+			button3.removeClass("active");
+		},
+		
+		btn2_appearance: function() {
+			button2.addClass("active");
+			button2.off("mouseenter");
+			button1.removeClass("active");
+			button3.removeClass("active");
+		},
+		
+		btn3_appearance: function() {
+			button3.addClass("active");
+			button3.off("mouseenter");
+			button1.removeClass("active");
+			button2.removeClass("active");
+		}
+		
+	} //ObjectEnd
+	
+	
+		
+		
+//Append Buttons	
+	wrap.append('<span class="next"></span><span class="prev"></span>');
+	var	btnNext = $('span.next'),
+		btnPrev = $('span.prev');
+
+	
+	changeNext = myGallery.changeNext_1;
+	changePrev = myGallery.changePrev_1;
+	
+	button1.click(function() {
+		changeNext = myGallery.changeNext_1,
+		changePrev = myGallery.changePrev_1 
+		
+	});
+	
+	
+	button2.click(function() {
+		changeNext = myGallery.changeNext_2,
+		changePrev = myGallery.changePrev_2 
+		
+	});
+	
+	button3.click(function() {
+		changeNext = myGallery.changeNext_3,
+		changePrev = myGallery.changePrev_3 
+		
+	});
+	
+//Appearance
+	
+	button1.addClass("active");
+		
+	button1.click(function(){
+		myGallery.btn1_appearance();
+	});
+	
+	button2.click(function(){
+		myGallery.btn2_appearance();
+	
+	});
+	
+	button3.click(function(){
+		myGallery.btn3_appearance();
+	
+	});
+	
+	
+	
+//NEXT		
+	btnNext.click(function(){
+		imgs.stop(false, true);
+		//imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').stop(false, true);
+		myGallery.next();
+	
+	});
+		
+
+
+//PREV	
+	btnPrev.click(function(){
+		imgs.stop(false, true);
+		//imgs.filter(':nth-child(' + (myGallery.imgIndex) + ')').stop(false, true);
+		myGallery.prev();
+	
+	});
+
+//Timer
+	function start(resume) {
+		if(!resume)
+		{
+			rM = Math.floor((Math.random() * 0) + 0);
+			rS = Math.floor((Math.random() * 59) + 1);
+		}
+		$('#minutes').text(rM);
+		$('#seconds').text(rS);
+		
+	int1 = setInterval(function timer() 
+	
+	{
+		if(rM > 0 && rS > 0) 
+		{
+			rS--;
+			$('#seconds').text(rS);
+		}
+		
+		else if(rM > 0 && rS == 0) 
+		{
+			rM--;
+			rS = 60;
+			$('#minutes').text(rM);
+			$('#seconds').text(rS);
+		}
+		
+		else if(rM == 0 && rS > 0) 
+		{
+			rS--;
+			$('#seconds').text(rS);
+		}
+		
+		else if(rM == 0 && rS == 0) 
+		{
+			$('#minutes').text(rM);
+			$('#seconds').text(rS);
+			
+			function timerChange() {
+				if(myGallery.imgIndex != myGallery.indexMax)
+				{
+					myGallery.imgIndex++;
+					changeNext();
+					btnNext.disabled = false;
+					
+					rM = Math.floor((Math.random() * 0) + 0);
+					rS = Math.floor((Math.random() * 59) + 1);
+					$('#minutes').text(rM);
+					$('#seconds').text(rS);
+				}
+				
+				else
+				{
+					myGallery.imgIndex = 1;
+					changeNext();
+					btnNext.disabled = false;
+					btnNext.css({opacity:1});	
+					
+					btnPrev.disabled = true;
+					btnPrev.css({opacity:0.5});
+
+					
+					rM = Math.floor((Math.random() * 0) + 0);
+					rS = Math.floor((Math.random() * 59) + 1);
+					$('#minutes').text(rM);
+					$('#seconds').text(rS);
+				}
+			}
+			
+			timerChange();
+			
+		}
+		
+
+    }, 1000);
+		
+		
+	};	
+			
+		$('#pause').click(function()
+		{
+			if(paused == false)
+			{
+				
+				clearInterval(int1),
+				paused = true;
+			}
+			
+			else
+			{
+				paused = false;
+				start(true);
+			}
+		});
+		
+	start();
+	
+
+});

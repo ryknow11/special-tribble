@@ -1,0 +1,56 @@
+[13:02:12] Roman Faktorovich: if (genderValue == 'male') {
+ obj.obr_select.options[1].style.display = 'inline';
+ obj.obr_select.options[3].style.display = 'inline';
+ obj.obr_select.options[2].style.display = 'none';
+ obj.obr_select.options[4].style.display = 'none';
+ }
+ if (genderValue == 'female')  {
+ obj.obr_select.options[2].style.display = 'inline';
+ obj.obr_select.options[4].style.display = 'inline';
+ obj.obr_select.options[1].style.display = 'none';
+ obj.obr_select.options[3].style.display = 'none';
+ }
+ 
+ 
+ 
+ 
+ 
+ if (genderValue == 'male') {
+	if(obj.obr_select.options[1].style.display == 'none') {
+			obj.obr_select.options[1].style.display = 'inline';
+		
+		}
+	
+	if(obj.obr_select.options[3].style.display == 'none') {
+			obj.obr_select.options[3].style.display = 'inline';
+		
+		}
+
+ obj.obr_select.options[2].style.display = 'none';
+ obj.obr_select.options[4].style.display = 'none';
+	
+ 
+ }
+ 
+	if (genderValue == 'female')  {
+		if(obj.obr_select.options[2].style.display == 'none') {
+			obj.obr_select.options[2].style.display = 'inline';
+		
+		}
+		
+		if(obj.obr_select.options[4].style.display == 'none') {
+			obj.obr_select.options[4].style.display = 'inline';
+		
+		}
+		
+		obj.obr_select.options[1].style.display = 'none';
+		 obj.obr_select.options[3].style.display = 'none';
+
+	}
+ }
+ 
+ 
+ if (testName == true && obj.obr_select.value != 0 && obj.obr_select.value != obj.obr_select.options[0].value ) {
+						alert("Приветствую " +  "  " + obj.obr_select.value + "  " + obj.name.value);
+						
+				}

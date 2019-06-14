@@ -1,0 +1,81 @@
+function Gallery(images) {
+
+	this.images = images;
+	this.imgCurrentIndex = 1;
+	this.indexMax = images.length;
+	this.animationType = 1;
+	
+	this.IsNextAvailable() {
+		return (this.imgCurrentIndex < this.indexMax);
+	}
+
+	this.IsPreviousAvailable() {
+		return (this.imgCurrentIndex > 1);
+	}
+	
+	this.Next = function() {
+		if(this.IsNextAvailable()) {
+			this.ShowSlide(this.imgCurrentIndex + 1);
+		}
+	}
+	
+	this.Previous = function() {
+		if(this.IsPreviousAvailable()) {
+			this.ShowSlide(this.imgCurrentIndex - 1);
+		}	
+	}
+	
+	this.ShowSlide = function(index) {
+	//проверка крайних значений
+		this.images.stop(false, true);
+		if (this.animationType == 1)
+			this.ShowSlideAnimation1(index);
+		else if (this.animationType == 2)
+			this.ShowSlideAnimation2(index);
+		else if (this.animationType == 3)
+			this.ShowSlideAnimation3(index);
+		this.imgCurrentIndex = index;
+	}
+	
+	
+	
+	
+	this.ShowSlideAnimation1 = function(index) {
+		if (this.imgCurrentIndex < index) {
+			this.images.filter(':nth-child(' + index + ')').animate({left:"+=640"}, 0).fadeIn(0);
+			this.images.animate({left:"-=640"}, 500);
+			this.images.not(':nth-child(' + index + ')').fadeOut(0).animate({left:"+=640"}, 0);
+		}
+		else if (this.imgCurrentIndex > index) {
+			this.images.filter(':nth-child(' + index + ')').animate({left:"-=640"}, 0).fadeIn(0);
+			this.images.animate({left:"+=640"}, 500);
+			this.images.not(':nth-child(' + index + ')').fadeOut(0).animate({left:"-=640"}, 0);
+		}
+	}
+	
+	
+	this.ShowSlideAnimation2 = function(index) {
+	
+	}
+	
+	this.ShowSlideAnimation3 = function(index) {
+	
+	}
+	
+		
+	this.ChangeAnimationType = function(animationType) {
+		this.animationType = animationType;
+	}
+	
+
+
+
+}
+
+
+
+
+
+
+
+

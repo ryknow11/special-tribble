@@ -1,0 +1,188 @@
+* {
+margin:0px;
+padding:0px;
+}
+
+html. body {
+width:100%;
+heigth:100%;
+}
+
+.wrap {
+position:relative;
+width:704px;
+height:480px;
+margin:100px auto 0;
+}
+
+.slider {
+width: 640px;
+height: 480px;
+position: relative;
+left: 32px;
+overflow:hidden;
+}
+
+
+.slider img {
+width:640px;
+height:auto;
+display:none;
+position:absolute;
+top:0;
+}
+
+.slider img:first-child {
+display:block;
+}
+
+.wrap span {
+width:32px;
+height:50px;
+position:absolute;
+cursor:pointer;
+}
+
+.wrap span {
+margin-top:-25px;
+width:32px;
+height:50px;
+display:block;
+position:absolute;
+top:50%;
+cursor:pointer;
+}
+
+.wrap span.next {
+right:0;
+background:url(img/galery_arrow_right.png) no-repeat;
+}
+
+.wrap span.prev {
+left:0;
+background:url(img/galery_arrow_left.png) no-repeat;
+opacity:0.5;
+}
+
+.timerHolder  {
+	height:100px;
+	
+
+}
+
+.timerHolder span{
+	margin-top:initial;
+	width:initial;
+	height:initial;
+	display:initial;
+	position:initial;
+	top:initial;
+	cursor:initial;
+	font-size:40px;
+	
+}
+
+.bCont {
+width: 50%;
+position: relative;
+margin:0 auto;
+}
+
+.buttons {
+width: 100px;
+height: 50px;
+position: relative;
+background:#F5F5F5;
+box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+border-radius:10px;
+cursor:pointer;
+}
+
+.buttons:hover {
+	background: #DCDCDC;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+	
+}
+
+.active {
+	background: #F5F5F5 !important;
+	box-shadow: inset 0px 0px 10px #BCFF03 !important;
+}
+
+
+.button.active:hover{
+	background:inherit;
+	box-shadow:inherit; 
+}
+
+
+
+.buttons p {
+	position:absolute;
+	
+}
+
+#b1 {
+	float:left;
+}
+
+#b2 {
+	margin:0 auto;
+}
+
+#b3 {
+	float:right;
+	top:-50px;
+}
+
+/*.hover {
+	background: #DCDCDC;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+}*/
+
+
+.textIn {
+	width:auto !important;
+	height:auto !important;
+	left:50%;
+	margin-left:-4px;
+	top:38px !important;
+	color:rgb(10, 255, 0);
+	font-size:19px;
+}
+
+#pauseBtn {
+	width: 100px;
+	height: 50px;
+	background:#F5F5F5;
+	border-radius:7px;
+	-webkit-transition: all 0.3s ease;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+	padding-left: 7px;
+	color: rgb(10, 255, 0);
+	
+	
+}
+
+#pauseBtn:hover {
+	transform: scale(1.1, 1.1);
+	color:  #FF4500;
+	background: #DCDCDC;
+	cursor: pointer;
+}
+
+#pause {
+	display:block;
+	font-size: 21px;
+}
+
+#pause:hover {
+	cursor:pointer;
+}
+
+
+
+
+
+
+
